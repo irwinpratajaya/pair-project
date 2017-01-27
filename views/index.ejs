@@ -3,9 +3,66 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Student Name</td>
+          <td>SUDOKU I </td>
+          <td>CREATE AT</td>
+          <td>ACTION</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i=0;i < hacktivdata.length; i++) {%>
+          <tr>
+            <td><%= hacktivdata[i].id %></td>
+            <td><%= hacktivdata[i].StudentName %></td>
+            <td><%= hacktivdata[i].score %></td>
+            <td><%= hacktivdata[i].createdAt %></td>
+            <td><a href="/edit/<%= hacktivdata[i].id %>"
+              class="btn btn-info">Update</a>&nbsp|&nbsp
+              <a href="/delete/<%= hacktivdata[i].id %>"
+                onclick="popup(<%= hacktivdata[i].id %>)"
+                class="btn btn-danger">Delete</a></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <form action="/add" method="post">
+      <div class="form-group">
+        Student Name:<br>
+        <input type="text" name="StudentName" placeholder="input student name"><br>
+      </div>
+      <div class="form-group">
+        Input Score:<br>
+        <input type="text" name="score" ><br>
+      </div>
+      <input type="submit" value="Submit" class="btn btn-success">
+    </form>
   </body>
 </html>
