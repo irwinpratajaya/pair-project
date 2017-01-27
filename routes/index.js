@@ -10,7 +10,8 @@ router.get('/', function (req, res, next) {
   })
 })
 
-router.post('/add', function (res, req, next) {
+router.post('/add', function (req, res, next) {
+  console.log(req.body);
   models.Instructur.create({
     StudentName: req.body.StudentName,
     score: req.body.score
@@ -19,4 +20,29 @@ router.post('/add', function (res, req, next) {
   })
 })
 
+router.post('/update',function (req, res, next) {
+
+  models.Instructur.findById(req.body.id).then(function (data) {
+    data.update({
+      score: req.body.score
+    }).then(function () {
+      res.redirect('/')
+    })
+  })
+})
+
+router.get('/edit/:id', function (req, res, next) {
+  models.Instructur.findById(req.params.id).then(function (data) {
+    res.render('edit', {editData: data})
+  })
+})
+
+router.get('/delete/:id', function (req, res ,next) {
+  models.Instructur.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  res.redirect('/')
+})
 module.exports = router;

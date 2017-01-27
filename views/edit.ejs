@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h2>Update Score</h2>
+    <form action="/update" method="post">
+      <input type="text" name="id" value="<%= editData.id %>" placeholder="Input ID" readonly="true">
+      <input type="text" name="StudentName" value="<%= editData.StudentName %>" readonly="true">
+      <input type="text" name="score" value="<%= editData.score %>" placeholder="Update Score">
+      <input type="submit" value="Update" class="btn btn-info">
+
+    </form>
+
+  </body>
+</html>
